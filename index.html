@@ -11,12 +11,29 @@
 </head>
 
 <body>
+    <!-- header-->
     <header>
-        <h1 class="bg-dark text-light p-3 text-center">Weather Dashboard</h1>
+        <h1 class="bg-dark text-light p-3 text-center mb-0">Weather Dashboard</h1>
     </header>
 
-    <main class="container-fluid d-flex m-2">
-        <div class="col-4"></div>
+    <!-- main container -->
+    <main class="container-fluid d-flex ml-0 mr-0 pl-0">
+        <!-- search section column -->
+        <section class="col-4 bg-light">
+            <h5 class="mb-3 mt-3 text-bold">Search for a City:</h5>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search City" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+            </div>
+
+            <article class="cities-append">
+                <!-- here is the section to append or prepend the cities that we look for -->
+            </article>
+        </section>
+
         <div class="col-9"></div>
     </main>
 
