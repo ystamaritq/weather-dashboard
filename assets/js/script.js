@@ -1,8 +1,18 @@
 // Variables
+var cities = [];
 
+if (localStorage.getItem("cities") !== null) {
+	cities = JSON.parse(localStorage.getItem("cities"));
+	cities.forEach((city) => {
+		$("#cities-append").append(`<li class="list-group-item">${city}</li>`);
+	});
+}
 // Functions
 function loadWeather(city) {
 	// do ajax here
+
+	var queryUrl =
+		"https://api.weatherapi.com/v1/forecast.json?key=df00607ac86544829aa40423201905&q=Austin&days=5";
 
 	var simualtedAjaxResponse = {
 		location: {
@@ -156,16 +166,32 @@ function loadWeather(city) {
 		alert: {},
 	};
 
-	addCityWather(simualtedAjaxResponse);
+	addCityWeather(simualtedAjaxResponse);
 
 	// call addCityWather with response object
 }
 
-function addCityWather(response) {}
+function addCityWeather(response) {}
+
+function addCity() {
+	//getting the user city input text
+	var city = $("#search-text").val();
+
+	//append the city to the ul <li>city</li>
+	$("#cities-append").append(`<li class="list-group-item">${city}</li>`);
+
+	//added city to the array of cities to save at the local storage
+	cities.push(city);
+
+	localStorage.setItem("cities", JSON.stringify(cities));
+}
 
 // On Document Ready
 $(document).ready(function () {
 	// TODO: load vars from local storage
+
 	// add actions to buttons
+	$("#search-button").on("click", addCity);
+
 	// visualize elements
 });
