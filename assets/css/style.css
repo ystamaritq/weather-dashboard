@@ -9,5 +9,12 @@ body {
 
 .badge-moderate {
 	color: black;
+	border: 2px solid yellow;
 	background-color: yellow;
+}
+
+.badge-extreme {
+	color: black;
+	border: 2px solid orange;
+	background-color: orange;
 }

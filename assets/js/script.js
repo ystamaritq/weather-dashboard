@@ -16,30 +16,36 @@ function loadWeather(city) {
 
 	// ajax here (getting the json object)
 	$.getJSON(queryUrl, function (json) {
-		console.log(json);
-
 		var currentCity = json.location.name;
 		var date = new Date(json.location.localtime).toDateString();
 		var iconUrl = "https:" + json.forecast.forecastday[0].day.condition.icon;
+		var uv = json.current.uv;
 
 		//display the json data on the page
 		$("#current-city").html(`${currentCity} - ${date} <img src="${iconUrl}">`);
 		$("#temp").text(json.current.temp_f);
 		$("#humidity").text(json.current.humidity);
 		$("#wind").text(json.current.wind_mph);
-		$("#uv-index").text(json.current.uv);
+		$("#uv-index").text(uv);
+
+		//remove the classes before to add the specific one
 		$("#uv-index").removeClass([
-			"badge-success",
-			"badge-moderate",
-			"badge-warning",
-			"badge-danger",
+			"badge-success", // color green low UV risk  (0 to 2 :  means low danger from the Sun's UV rays for the average person.)
+			"badge-moderate", // color yellow moderate UV risk (3 to 5 :  means moderate risk of harm from unprotected Sun exposure.)
+			"badge-warning", // color orange high UV risk (6 to 7 : means high risk of harm from unprotected Sun exposure. Protection against skin and eye damage is needed.)
+			"badge-danger", // color red very high UV risk (8 to 10 : means very high risk of harm from unprotected Sun exposure. Take extra precautions because unprotected skin and eyes will be damaged and can burn quickly.)
+			"badge-extreme", // color purple extreme UV risk (11+ : means extreme risk of harm from unprotected Sun exposure. Take all precautions because unprotected skin and eyes can burn in minutes.)
 		]);
-		$("#uv-index").addClass(getUVColor(json.current.uv));
+
+		//adding the class that return the getUVColor(uv) function
+		$("#uv-index").addClass(getUVColor(uv));
 	});
 }
 
 function getUVColor(uv) {
-	return "badge-moderate";
+	if (uv >= 2) {
+		return;
+	}
 }
 
 function addCity() {
