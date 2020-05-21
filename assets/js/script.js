@@ -16,11 +16,14 @@ function loadWeather(city) {
 
 	// ajax here (getting the json object)
 	$.getJSON(queryUrl, function (json) {
+		console.log(json);
+
 		var currentCity = json.location.name;
-		var date = moment().format("MM/DD/YY");
+		var date = new Date(json.location.localtime).toDateString();
+		var iconUrl = "https:" + json.forecast.forecastday[0].day.condition.icon;
 
 		//display the json data on the page
-		$("#current-city").text(`${currentCity} ${date}`);
+		$("#current-city").html(`${currentCity} - ${date} <img src="${iconUrl}">`);
 		$("#temp").text(json.current.temp_f);
 		$("#humidity").text(json.current.humidity);
 		$("#wind").text(json.current.wind_mph);
