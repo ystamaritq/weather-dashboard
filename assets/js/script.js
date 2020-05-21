@@ -106,9 +106,6 @@ function addCity() {
 	var city = $("#search-text").val();
 
 	if (!cities.includes(city)) {
-		//append the city to the ul <li>city</li>
-		// $("#cities-append").prepend(`<li class="list-group-item">${city}</li>`);
-
 		//added city to the array of cities to save at the local storage
 		cities.push(city);
 
