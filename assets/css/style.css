@@ -6,3 +6,15 @@ body {
 .weather-display {
 	border: 1px solid gray;
 }
+
+.badge-moderate {
+	color: black;
+	border: 2px solid yellow;
+	background-color: yellow;
+}
+
+.badge-extreme {
+	color: black;
+	border: 2px solid violet;
+	background-color: violet;
+}
