@@ -2,7 +2,7 @@
 var cities = [];
 var city = "";
 var key = "df00607ac86544829aa40423201905";
-var days = 5;
+var days = 6;
 
 if (localStorage.getItem("cities") !== null) {
 	cities = JSON.parse(localStorage.getItem("cities"));
@@ -16,6 +16,8 @@ function loadWeather(city) {
 
 	// ajax here (getting the json object)
 	$.getJSON(queryUrl, function (json) {
+		console.log(json);
+
 		var currentCity = json.location.name;
 		var date = new Date(json.location.localtime).toDateString();
 		var iconUrl = "https:" + json.forecast.forecastday[0].day.condition.icon;
@@ -39,6 +41,21 @@ function loadWeather(city) {
 
 		//adding the class that return the getUVColor(uv) function
 		$("#uv-index").addClass(getUVColor(uv));
+
+		for (var d = 1; d <= 5; d++) {
+			var dateForecast = json.forecast.forecastday[d].date;
+			var tempForecast = json.forecast.forecastday[d].day.maxtemp_f;
+			var humidityForecast = json.forecast.forecastday[d].day.avghumidity;
+			var conditionIcon = json.forecast.forecastday[d].day.condition.icon;
+
+			$("#days-wrap").append(`
+				<div class="card col-2 mr-1 bg-primary text-white">
+					<span class="pb-4">${dateForecast}</span>
+		   		    <img src="https:${conditionIcon}" style="width: 64px;>
+		  		    <span>Temp:${tempForecast} F</span>
+					<span>Humidity:${humidityForecast} %</span>
+				</div>`);
+		}
 	});
 }
 
