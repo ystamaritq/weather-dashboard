@@ -43,8 +43,16 @@ function loadWeather(city) {
 }
 
 function getUVColor(uv) {
-	if (uv >= 2) {
-		return;
+	if (uv >= 0 && uv <= 2) {
+		return "badge-success";
+	} else if (uv >= 3 && uv <= 5) {
+		return "badge-moderate";
+	} else if (uv >= 6 && uv <= 7) {
+		return "badge-warning";
+	} else if (uv >= 8 && uv <= 10) {
+		return "badge-danger";
+	} else if (uv >= 11) {
+		return "badge-extreme";
 	}
 }
 
