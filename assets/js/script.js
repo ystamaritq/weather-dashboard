@@ -6,18 +6,15 @@ var days = 6;
 
 if (localStorage.getItem("cities") !== null) {
 	cities = JSON.parse(localStorage.getItem("cities"));
-	cities.forEach((city) => {
-		$("#cities-append").prepend(`<li class="list-group-item">${city}</li>`);
-	});
+	loadCities();
 }
+
 // Functions
 function loadWeather(city) {
 	var queryUrl = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=${days}`;
 
 	// ajax here (getting the json object)
 	$.getJSON(queryUrl, function (json) {
-		console.log(json);
-
 		var currentCity = json.location.name;
 		var date = new Date(json.location.localtime).toDateString();
 		var iconUrl = "https:" + json.forecast.forecastday[0].day.condition.icon;
@@ -44,20 +41,29 @@ function loadWeather(city) {
 
 		$("#days-wrap").empty();
 
-		for (var d = 1; d <= 2; d++) {
-			var dateForecast = json.forecast.forecastday[d].date;
-			var tempForecast = json.forecast.forecastday[d].day.maxtemp_f;
-			var humidityForecast = json.forecast.forecastday[d].day.avghumidity;
-			var conditionIcon = json.forecast.forecastday[d].day.condition.icon;
+		var forecast = json.forecast.forecastday;
+
+		for (var d = 0; d < 5; d++) {
+			// sometimes the forecast doesn't have up to 5 days (paid vs free plan).
+			// we are intentionally generating additional data to keep UI's style
+			var data = json.forecast.forecastday[d % forecast.length];
+			var dateForecast = data.date;
+			var tempForecast = data.day.maxtemp_f;
+			var humidityForecast = data.day.avghumidity;
+			var conditionIcon = data.day.condition.icon;
 
 			$("#days-wrap").append(`
-				<div class="card col-2 mr-1 bg-primary text-white">
-					<span class="pb-3">${dateForecast}</span>
-		   		    <img src="https:${conditionIcon}" style="width: 64px;>
-		  		    <span>Temp:${tempForecast} F</span>
-					<span>Humidity:${humidityForecast} %</span>
+				<div class="card col-2 py-2 mr-1 bg-primary text-white">
+					<span class="card-title pb-3">${dateForecast}</span>
+		   		    <img src="https:${conditionIcon}" width=64>
+		  		    <span>Temp: ${tempForecast} F</span>
+					<span>Humidity: ${humidityForecast} %</span>
 				</div>`);
 		}
+	}).fail(function (err) {
+		// remove invalid city from historical data
+		removeCity(city);
+		alert(err.responseJSON.error.message);
 	});
 }
 
@@ -75,20 +81,42 @@ function getUVColor(uv) {
 	}
 }
 
-function addCity() {
-	//getting the user city input text
-	var city = $("#search-text").val();
+function loadCities(activeCity) {
+	$("#cities-append").empty();
+	cities.forEach((city) => {
+		var activeClass = city === activeCity ? "bg-secondary" : "bg-light";
+		$("#cities-append").prepend(
+			`<li class="list-group-item ${activeClass}" onclick="loadCities('${city}')">${city}</li>`
+		);
+	});
+	if (activeCity) loadWeather(activeCity);
+}
 
-	//append the city to the ul <li>city</li>
-	$("#cities-append").prepend(`<li class="list-group-item">${city}</li>`);
-
-	//added city to the array of cities to save at the local storage
-	cities.push(city);
+function removeCity(city) {
+	cities = cities.filter((c) => c !== city);
 
 	//saving to the local storage array of cities
 	localStorage.setItem("cities", JSON.stringify(cities));
 
-	loadWeather(city);
+	loadCities();
+}
+
+function addCity() {
+	//getting the user city input text
+	var city = $("#search-text").val();
+
+	if (!cities.includes(city)) {
+		//append the city to the ul <li>city</li>
+		// $("#cities-append").prepend(`<li class="list-group-item">${city}</li>`);
+
+		//added city to the array of cities to save at the local storage
+		cities.push(city);
+
+		//saving to the local storage array of cities
+		localStorage.setItem("cities", JSON.stringify(cities));
+	}
+
+	loadCities(city);
 }
 
 // On Document Ready
