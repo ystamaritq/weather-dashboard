@@ -14,14 +14,12 @@ if (localStorage.getItem("cities") !== null) {
 function loadWeather(city) {
 	var queryUrl = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=${days}`;
 
-	// ajax here
+	// ajax here (getting the json object)
 	$.getJSON(queryUrl, function (json) {
 		var currentCity = json.location.name;
 		var date = moment().format("MM/DD/YY");
 
-		// console.log(json);
-
-		//display the json data in the page
+		//display the json data on the page
 		$("#current-city").text(`${currentCity} ${date}`);
 		$("#temp").text(json.current.temp_f);
 		$("#humidity").text(json.current.humidity);
