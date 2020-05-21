@@ -22,11 +22,11 @@ function loadWeather(city) {
 		var uv = json.current.uv;
 
 		//display the json data on the page
-		$("#current-city").html(`${currentCity} - ${date} <img src="${iconUrl}">`);
-		$("#temp").text(json.current.temp_f);
-		$("#humidity").text(json.current.humidity);
-		$("#wind").text(json.current.wind_mph);
-		$("#uv-index").text(uv);
+		$("#current-city").html(`${currentCity}  ${date}  <img src="${iconUrl}">`);
+		$("#temp").text(" " + json.current.temp_f + " °F");
+		$("#humidity").text(" " + json.current.humidity + " %");
+		$("#wind").text(" " + json.current.wind_mph + " MPH");
+		$("#uv-index").text("  " + uv);
 
 		//remove the classes before to add the specific one
 		$("#uv-index").removeClass([
