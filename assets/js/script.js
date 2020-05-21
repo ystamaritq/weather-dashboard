@@ -28,7 +28,18 @@ function loadWeather(city) {
 		$("#humidity").text(json.current.humidity);
 		$("#wind").text(json.current.wind_mph);
 		$("#uv-index").text(json.current.uv);
+		$("#uv-index").removeClass([
+			"badge-success",
+			"badge-moderate",
+			"badge-warning",
+			"badge-danger",
+		]);
+		$("#uv-index").addClass(getUVColor(json.current.uv));
 	});
+}
+
+function getUVColor(uv) {
+	return "badge-moderate";
 }
 
 function addCity() {
