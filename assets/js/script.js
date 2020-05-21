@@ -1,6 +1,8 @@
 // Variables
 var cities = [];
 var city = "";
+var key = "df00607ac86544829aa40423201905";
+var days = 5;
 
 if (localStorage.getItem("cities") !== null) {
 	cities = JSON.parse(localStorage.getItem("cities"));
@@ -10,23 +12,21 @@ if (localStorage.getItem("cities") !== null) {
 }
 // Functions
 function loadWeather(city) {
-	var queryUrl =
-		"https://api.weatherapi.com/v1/forecast.json?key=df00607ac86544829aa40423201905&q=" +
-		city +
-		"&days=5";
+	var queryUrl = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=${days}`;
 
 	// ajax here
 	$.getJSON(queryUrl, function (json) {
-		$("#city").html(json.name);
-		$("#main_weather").html(json.weather[0].main);
-		$("#description_weather").html(json.weather[0].description);
-		$("#weather_image").attr(
-			"src",
-			"http://openweathermap.org/img/w/" + json.weather[0].icon + ".png"
-		);
-		$("#temperature").html(json.main.temp);
-		$("#pressure").html(json.main.pressure);
-		$("#humidity").html(json.main.humidity);
+		var currentCity = json.location.name;
+		debugger;
+		var date = moment().format("dddd/ MMMM Do YYYY");
+
+		console.log(json);
+
+		$("#current-city").text(currentCity + "     " + date);
+		$("#temp").text(json.current.temp_f);
+		$("#humidity").text(json.current.humidity);
+		$("#wind").text(json.current.wind_mph);
+		$("#uv-index").text(json.current.uv);
 	});
 }
 
@@ -42,6 +42,8 @@ function addCity() {
 
 	//saving to the local storage array of cities
 	localStorage.setItem("cities", JSON.stringify(cities));
+
+	loadWeather(city);
 }
 
 // On Document Ready
