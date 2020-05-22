@@ -1,9 +1,15 @@
 // Variables
 var cities = [];
-var city = "";
+var activeCity = "";
 var key = "df00607ac86544829aa40423201905";
 var days = 6;
 
+// load last active city
+if (localStorage.getItem("activeCity") !== null) {
+	activeCity = localStorage.getItem("activeCity");
+}
+
+// load previously stored list of cities
 if (localStorage.getItem("cities") !== null) {
 	cities = JSON.parse(localStorage.getItem("cities"));
 	loadCities();
@@ -15,13 +21,13 @@ function loadWeather(city) {
 
 	// ajax here (getting the json object)
 	$.getJSON(queryUrl, function (json) {
-		var currentCity = json.location.name;
+		var cityName = json.location.name;
 		var date = new Date(json.location.localtime).toDateString();
 		var iconUrl = "https:" + json.forecast.forecastday[0].day.condition.icon;
 		var uv = json.current.uv;
 
 		//display the json data on the page
-		$("#current-city").html(`${currentCity}  ${date}  <img src="${iconUrl}">`);
+		$("#current-city").html(`${cityName}  ${date}  <img src="${iconUrl}">`);
 		$("#temp").text(" " + json.current.temp_f + " °F");
 		$("#humidity").text(" " + json.current.humidity + " %");
 		$("#wind").text(" " + json.current.wind_mph + " MPH");
@@ -81,24 +87,41 @@ function getUVColor(uv) {
 	}
 }
 
-function loadCities(activeCity) {
+function loadCities() {
 	$("#cities-append").empty();
+
 	cities.forEach((city) => {
-		var activeClass = city === activeCity ? "bg-secondary" : "bg-light";
+		var activeClass = "bg-light";
+		if (city === activeCity) activeClass = "bg-secondary";
 		$("#cities-append").prepend(
-			`<li class="list-group-item ${activeClass}" onclick="loadCities('${city}')">${city}</li>`
+			`<li class="list-group-item ${activeClass}" onclick="setActiveCity('${city}')">${city}<span onclick="removeCity('${city}', event)">Delete</span></li>`
 		);
 	});
+
 	if (activeCity) loadWeather(activeCity);
 }
 
-function removeCity(city) {
+function setActiveCity(city) {
+	activeCity = city;
+	localStorage.setItem("activeCity", activeCity);
+	loadCities();
+}
+
+function removeCity(city, event) {
+	// remove cities that name matches city
 	cities = cities.filter((c) => c !== city);
 
 	//saving to the local storage array of cities
 	localStorage.setItem("cities", JSON.stringify(cities));
 
+	if (city === activeCity) {
+		activeCity = null;
+		localStorage.removeItem("activeCity");
+	}
+
 	loadCities();
+
+	if (event) event.stopPropagation();
 }
 
 function addCity() {
@@ -113,7 +136,7 @@ function addCity() {
 		localStorage.setItem("cities", JSON.stringify(cities));
 	}
 
-	loadCities(city);
+	setActiveCity(city);
 }
 
 // On Document Ready
