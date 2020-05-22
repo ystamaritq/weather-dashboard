@@ -88,11 +88,15 @@ function getUVColor(uv) {
 }
 
 function loadCities() {
+	//delete the cities to avoid repetitions
 	$("#cities-append").empty();
 
+	//look through the cities array to look for a city and change the background color if an active city
 	cities.forEach((city) => {
 		var activeClass = "bg-light";
 		if (city === activeCity) activeClass = "bg-active";
+
+		//attached the active class and the onclick event to the list item
 		$("#cities-append").prepend(
 			`<li class="list-group-item d-flex justify-content-between pr-2 pl-4 ${activeClass}" onclick="setActiveCity('${city}')">${city}
 			<img class="img-custom" src="./assets/imgs/delete.png" alt="delete" onclick="removeCity('${city}', event)">
@@ -100,13 +104,12 @@ function loadCities() {
 		);
 	});
 
-	if (activeCity) loadWeather(activeCity);
-}
-
-function setActiveCity(city) {
-	activeCity = city;
-	localStorage.setItem("activeCity", activeCity);
-	loadCities();
+	if (activeCity) {
+		loadWeather(activeCity);
+		$(".display-modal-weather").removeClass("d-none");
+	} else {
+		$(".display-modal-weather").addClass("d-none");
+	}
 }
 
 function removeCity(city, event) {
@@ -137,8 +140,14 @@ function addCity() {
 		//saving to the local storage array of cities
 		localStorage.setItem("cities", JSON.stringify(cities));
 	}
-
+	$(".display-modal-weather").removeClass("d-none");
 	setActiveCity(city);
+}
+
+function setActiveCity(city) {
+	activeCity = city;
+	localStorage.setItem("activeCity", activeCity);
+	loadCities();
 }
 
 // On Document Ready
