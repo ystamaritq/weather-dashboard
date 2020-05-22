@@ -94,7 +94,9 @@ function loadCities() {
 		var activeClass = "bg-light";
 		if (city === activeCity) activeClass = "bg-secondary";
 		$("#cities-append").prepend(
-			`<li class="list-group-item ${activeClass}" onclick="setActiveCity('${city}')">${city}<span onclick="removeCity('${city}', event)">Delete</span></li>`
+			`<li class="list-group-item d-flex justify-content-between pr-2 pl-4 bg-secondary ${activeClass}" onclick="setActiveCity('${city}')">${city}
+			<img class="img-custom" src="./assets/imgs/delete.png" alt="delete" onclick="removeCity('${city}', event)">
+			</li>`
 		);
 	});
 
