@@ -107,8 +107,13 @@ function loadCities() {
 	if (activeCity) {
 		loadWeather(activeCity);
 		$(".display-modal-weather").removeClass("d-none");
+
+		//hidden the other display
+		$(".display-template").removeClass("d-flex");
+		$(".display-template").addClass("d-none");
 	} else {
 		$(".display-modal-weather").addClass("d-none");
+		$(".display-template").addClass("d-flex");
 	}
 }
 
