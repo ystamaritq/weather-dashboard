@@ -32,5 +32,10 @@ body {
 }
 
 .arrow-size {
-	width: 220px;
+	width: 200px;
+}
+
+.text-custom {
+	font-size: xx-large;
+	color: darkblue;
 }
