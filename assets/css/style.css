@@ -4,7 +4,9 @@ body {
 }
 
 .weather-display {
-	border: 1px solid gray;
+	border: 3px solid darkgray;
+	background-image: #f0f8ff;
+	background-color: #ebf5fb;
 }
 
 .badge-moderate {
@@ -17,4 +19,14 @@ body {
 	color: black;
 	border: 2px solid violet;
 	background-color: violet;
+}
+
+.img-custom {
+	width: 30px;
+	height: 30px;
+}
+
+.bg-active {
+	background-color: #ebf5fb;
+	border: 3px solid darkgray;
 }

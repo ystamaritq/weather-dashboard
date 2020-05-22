@@ -27,7 +27,7 @@ function loadWeather(city) {
 		var uv = json.current.uv;
 
 		//display the json data on the page
-		$("#current-city").html(`${cityName}  ${date}  <img src="${iconUrl}">`);
+		$("#current-city").html(`${cityName} -- ${date}  <img src="${iconUrl}">`);
 		$("#temp").text(" " + json.current.temp_f + " °F");
 		$("#humidity").text(" " + json.current.humidity + " %");
 		$("#wind").text(" " + json.current.wind_mph + " MPH");
@@ -92,9 +92,11 @@ function loadCities() {
 
 	cities.forEach((city) => {
 		var activeClass = "bg-light";
-		if (city === activeCity) activeClass = "bg-secondary";
+		if (city === activeCity) activeClass = "bg-active";
 		$("#cities-append").prepend(
-			`<li class="list-group-item ${activeClass}" onclick="setActiveCity('${city}')">${city}<span onclick="removeCity('${city}', event)">Delete</span></li>`
+			`<li class="list-group-item d-flex justify-content-between pr-2 pl-4 ${activeClass}" onclick="setActiveCity('${city}')">${city}
+			<img class="img-custom" src="./assets/imgs/delete.png" alt="delete" onclick="removeCity('${city}', event)">
+			</li>`
 		);
 	});
 

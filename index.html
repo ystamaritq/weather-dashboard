@@ -26,8 +26,9 @@
                 <input type="text" class="form-control" id="search-text" placeholder="Search City"
                     aria-describedby="search-button">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary bg-primary text-white" type="button"
-                        id="search-button">Search</button>
+                    <button class="btn btn-outline-secondary bg-primary text-white" type="button" id="search-button">
+                        <img src="./assets/imgs/search.png" alt="search" class="img-custom">
+                    </button>
                 </div>
             </article>
             <!-- cities to append on JS -->
@@ -40,8 +41,8 @@
         </section>
         <!-- section for weather card display and 5 cards with the info template-->
         <section class="col-9 bg-white mt-5 pt-3">
-            <div class="row">
-                <div class="card ml-2 col-12 weather-display py-3">
+            <div class="row pt-4">
+                <div class="card ml-2 col-12 weather-display py-3 pb-3">
                     <h4 class="mt-3"><span id="current-city"></span></h4>
                     <div class="mt-4 mr-2">Temperature:<span id="temp"></span></div>
                     <div class="mt-3 mr-2">Humidity:<span id="humidity"></span></div>
