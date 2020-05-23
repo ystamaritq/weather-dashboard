@@ -30,3 +30,12 @@ body {
 	background-color: #ebf5fb;
 	border: 3px solid darkgray;
 }
+
+.arrow-size {
+	width: 200px;
+}
+
+.text-custom {
+	font-size: xx-large;
+	color: darkblue;
+}
