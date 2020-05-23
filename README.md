@@ -12,9 +12,8 @@ SO THAT I can plan a trip accordingly
 
 ### The following animation demonstrates the application functionality:
 
-![weather](./assets/img/ex1.png)
-![weather](./assets/img/ex2.png)
-![weather](./assets/img/ex3.png)
+![weather](./assets/imgs/ex1.png)
+![weather](./assets/imgs/ex2.png)
 
 ## Installing / Getting Started
 
