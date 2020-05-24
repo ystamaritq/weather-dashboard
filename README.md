@@ -10,7 +10,7 @@ I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 ```
 
-### The following animation demonstrates the application functionality:
+### The following images demonstrates the application functionality:
 
 ![weather](./assets/imgs/ex1.png)
 ![weather](./assets/imgs/ex2.png)
