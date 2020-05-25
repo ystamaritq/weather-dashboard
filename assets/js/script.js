@@ -70,7 +70,6 @@ function loadWeather(city) {
 }
 
 function getUVColor(uv) {
-	debugger;
 	if (uv >= 0 && uv <= 2) {
 		return "badge-success";
 	} else if (uv >= 3 && uv <= 5) {
