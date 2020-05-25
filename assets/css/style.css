@@ -36,6 +36,9 @@ body {
 }
 
 .text-custom {
-	font-size: xx-large;
+	font-size: large;
 	color: darkblue;
+}
+
+@media screen and (max-width: 600px) {
 }

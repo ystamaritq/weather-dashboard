@@ -20,9 +20,9 @@
     </header>
 
     <!-- main container -->
-    <main class="container-fluid d-flex ml-0 mr-0 pl-0">
+    <main class="container-fluid d-flex ml-0 mr-0 pl-0 flex-wrap">
         <!-- search section column -->
-        <section class="col-3 bg-light mt-5 pt-3">
+        <section class="col-lg-3 col-sm-12 bg-light mt-5 pt-3">
             <h5 class="mb-3 mt-3 text-bold">Search for a City:</h5>
             <article class="input-group mb-3">
                 <input type="text" class="form-control" id="search-text" placeholder="Search City"
@@ -44,19 +44,19 @@
 
 
         <!-- section template to show when is no data on the localstorage -->
-        <section class="col-9 bg-light display-template pt-5">
+        <section class="col-lg-9 col-sm-12 bg-light display-template pt-5 d-flex">
             <img src="./assets/imgs/img-weather.png" class="card-img" alt="weather img">
             <div class="card-img-overlay">
                 <div class="row">
-                    <img src="./assets/imgs/left-arrow.gif" class="pt-5 mt-3 arrow-size" alt="arrow">
-                    <span class="card-text text-custom pt-5 mt-5">Select a city or search for a city!</span>
+                    <!-- <img src="./assets/imgs/left-arrow.gif" class="pt-5 mt-3 arrow-size" alt="arrow"> -->
+                    <span class="card-text text-custom pt-5 m-auto">Select a city or search for a city!</span>
                 </div>
 
             </div>
         </section>
 
         <!-- section for weather card display and 5 cards with the info template-->
-        <section class="col-9 bg-white mt-5 pt-3 display-modal-weather">
+        <section class="col-lg-9 col-xs-12 bg-white mt-5 pt-3 display-modal-weather">
             <div class="row pt-4">
                 <div class="card ml-2 col-12 weather-display py-3 pb-3">
                     <h4 class="mt-3"><span id="current-city"></span></h4>
