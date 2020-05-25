@@ -39,3 +39,6 @@ body {
 	font-size: large;
 	color: darkblue;
 }
+
+@media screen and (max-width: 600px) {
+}

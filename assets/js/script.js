@@ -55,7 +55,7 @@ function loadWeather(city) {
 			var conditionIcon = data.day.condition.icon;
 
 			$("#days-wrap").append(`
-				<div class="card col-lg-2 col-sm-12 py-2 mr-1 bg-primary text-white mt-2">
+				<div class="card col-xl-2 col-lg-4 col-sm-3 py-2 mr-1 bg-primary text-white mt-2">
 					<span class="card-title pb-3">${dateForecast}</span>
 		   		    <img src="https:${conditionIcon}" width=64>
 		  		    <span>Temp: ${tempForecast} F</span>
