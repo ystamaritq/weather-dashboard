@@ -9,6 +9,11 @@ body {
 	background-color: #ebf5fb;
 }
 
+.image-custom {
+	width: 800px;
+	opacity: 80%;
+}
+
 .badge-moderate {
 	color: black;
 	border: 2px solid yellow;
@@ -37,7 +42,9 @@ body {
 
 .text-custom {
 	font-size: large;
-	color: darkblue;
+	margin: auto !important;
+	color: red;
+	font-weight: bold;
 }
 
 @media screen and (max-width: 600px) {
