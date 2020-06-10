@@ -1,6 +1,19 @@
+### Table of Contents
+
+- [Concept](#concept)
+- [User Stories](#user-stories)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Installing / Getting Started](#inslalling-/-getting-started)
+- [Demo](#demo)
+- [Features](#features)
+
+---
+
 # Weather Dashboard
 
 `This project hosts the source code for a Weather Dashboard. Display the weather of the city select by the user and the forecast days weather condition.`
+
+---
 
 ## User Story
 
@@ -8,12 +21,30 @@
 AS A traveler
 I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
+
 ```
 
-### The following images demonstrates the application functionality:
+---
 
-![weather](./assets/imgs/ex1.png)
-![weather](./assets/imgs/ex2.png)
+## Acceptance Criteria
+
+```
+GIVEN a weather dashboard with form inputs
+WHEN I search for a city
+THEN I am presented with current and future conditions for that city and that city is added to the search history
+WHEN I view current weather conditions for that city
+THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+WHEN I view the UV index
+THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+WHEN I view future weather conditions for that city
+THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
+WHEN I click on a city in the search history
+THEN I am again presented with current and future conditions for that city
+WHEN I open the weather dashboard
+THEN I am presented with the last searched city forecast
+```
+
+---
 
 ## Installing / Getting Started
 
@@ -45,6 +76,11 @@ Below is a summary of the key files for this project and their purpose:
 ## Additional Libraries:
 
 - **Bootstrap**
+
+### The following images demonstrates the application functionality:
+
+![weather](./assets/imgs/ex1.png)
+![weather](./assets/imgs/ex2.png)
 
 ## Features
 
