@@ -11,7 +11,10 @@
 
 # Weather Dashboard
 
-`This project hosts the source code for a Weather Dashboard. Display the weather of the city select by the user and the forecast days weather condition.`
+`
+This project hosts the source code for a Weather Dashboard. Display the weather of the city select by the user and the forecast days weather condition.
+
+`
 
 ---
 
@@ -77,10 +80,9 @@ Below is a summary of the key files for this project and their purpose:
 
 - **Bootstrap**
 
-### The following images demonstrates the application functionality:
+### The following gif demonstrates the application functionality:
 
-![weather](./assets/imgs/ex1.png)
-![weather](./assets/imgs/ex2.png)
+![weather](./assets/imgs/weather.gif)
 
 ## Features
 
