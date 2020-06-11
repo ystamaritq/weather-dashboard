@@ -142,7 +142,10 @@ function addCity() {
 		localStorage.setItem("cities", JSON.stringify(cities));
 	}
 	$(".display-modal-weather").removeClass("d-none");
+
 	setActiveCity(city);
+
+	$("#search-text").val("");
 }
 
 function setActiveCity(city) {
