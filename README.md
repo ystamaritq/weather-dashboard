@@ -84,6 +84,10 @@ Below is a summary of the key files for this project and their purpose:
 
 ![weather](./assets/imgs/weather.gif)
 
+[Deployed link: Try it out!](https://ystamaritq.github.io/weather-dashboard/) </div>
+
+[GitHub link](https://github.com/ystamaritq/weather-dashboard) </div>
+
 ## Features
 
 In this weather dashboard once you click the search button you will have to enter a valid city name. And then you will be presented with all the weather information about the city.
